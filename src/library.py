@@ -253,13 +253,16 @@ class Library:
                    query == str(book.year)]
         results_print = ''
         if results:
-            for book in results:
+            results_print = "Найденные книги:\n"
+            results_print += "-" * 95 + "\n"
+            results_print += f"{'№':<5} {'ID':<10} {'Название':<35} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
+            results_print += "-" * 95 + "\n"
+
+            for index, book in enumerate(results, start=1):
                 results_print += (
-                    f"ID: {book.id}, "
-                    f"Название: {book.title}, "
-                    f"Автор: {book.author}, "
-                    f"Год: {book.year}, "
-                    f"Статус: {book.status}\n")
+                    f"{index:<5} {book.id:<10} {book.title:<35} "
+                    f"{book.author:<25} {book.year:<5} {book.status:<10}\n"
+                )
             return results_print
         else:
             return "Книги не найдены."
@@ -276,13 +279,18 @@ class Library:
 
         if not self.books:
             return "Нет книг в библиотеке."
-        result = ""
-        for book in self.books:
-            result += (f"ID: {book.id}, "
-                       f"Название: {book.title}, "
-                       f"Автор: {book.author}, "
-                       f"Год: {book.year}, "
-                       f"Статус: {book.status}\n")
+
+        result = "Все книги в библиотеке:\n"
+        result += "-" * 95 + "\n"
+        result += f"{'№':<5} {'ID':<10} {'Название':<35} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
+        result += "-" * 95 + "\n"
+
+        for index, book in enumerate(self.books, start=1):
+            result += (
+                f"{index:<5} {book.id:<10} {book.title:<35} "
+                f"{book.author:<25} {book.year:<5} {book.status:<10}\n"
+            )
+
         return result
 
     def change_status(self) -> str:
