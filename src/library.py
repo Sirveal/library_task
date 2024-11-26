@@ -251,17 +251,21 @@ class Library:
                    if query.lower() in book.title.lower() or
                    query.lower() in book.author.lower() or
                    query == str(book.year)]
+
         results_print = ''
         if results:
             results_print = "Найденные книги:\n"
-            results_print += "-" * 95 + "\n"
-            results_print += f"{'№':<5} {'ID':<10} {'Название':<35} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
-            results_print += "-" * 95 + "\n"
+            results_print += "-" * 90 + "\n"
+            results_print += f"{'№':<5} {'ID':<10} {'Название':<30} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
+            results_print += "-" * 90 + "\n"
 
             for index, book in enumerate(results, start=1):
+                title = (book.title[:27] + '...') if len(book.title) > 30 else book.title
+                author = (book.author[:22] + '...') if len(book.author) > 25 else book.author
+
                 results_print += (
-                    f"{index:<5} {book.id:<10} {book.title:<35} "
-                    f"{book.author:<25} {book.year:<5} {book.status:<10}\n"
+                    f"{index:<5} {book.id:<10} {title:<30} "
+                    f"{author:<25} {book.year:<5} {book.status:<10}\n"
                 )
             return results_print
         else:
@@ -281,14 +285,17 @@ class Library:
             return "Нет книг в библиотеке."
 
         result = "Все книги в библиотеке:\n"
-        result += "-" * 95 + "\n"
-        result += f"{'№':<5} {'ID':<10} {'Название':<35} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
-        result += "-" * 95 + "\n"
+        result += "-" * 90 + "\n"  # Разделитель
+        result += f"{'№':<5} {'ID':<10} {'Название':<30} {'Автор':<25} {'Год':<5} {'Статус':<10}\n"
+        result += "-" * 90 + "\n"  # Заголовок разделитель
 
         for index, book in enumerate(self.books, start=1):
+            title = (book.title[:27] + '...') if len(book.title) > 30 else book.title
+            author = (book.author[:22] + '...') if len(book.author) > 25 else book.author
+
             result += (
-                f"{index:<5} {book.id:<10} {book.title:<35} "
-                f"{book.author:<25} {book.year:<5} {book.status:<10}\n"
+                f"{index:<5} {book.id:<10} {title:<30} "
+                f"{author:<25} {book.year:<5} {book.status:<10}\n"
             )
 
         return result
