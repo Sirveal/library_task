@@ -167,7 +167,8 @@ class Library:
                     new_year = int(new_year)
                     break
                 else:
-                    context_menu_print(context_error="Год издания должен быть больше 1000 и меньше 2024!", ver=0)
+                    context_menu_print(context_error="Год издания должен быть больше или "
+                                                     "равно 1000 и меньше или равно 2024!", ver=0)
                     new_year = input("Введите год издания: ").strip()
                     continue
 
@@ -250,7 +251,6 @@ class Library:
                    if query.lower() in book.title.lower() or
                    query.lower() in book.author.lower() or
                    query == str(book.year)]
-        print(results)
         results_print = ''
         if results:
             for book in results:

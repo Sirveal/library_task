@@ -32,10 +32,13 @@ def menu(**kwargs) -> None:
 def main() -> None:
 
     """
-    Display the menu options to the user.
+    Main function to run the library console program.
 
-    This function shows the available actions that the user can take in the library console program.
+    This function initializes the library, displays the main menu, and handles user input
+    to perform various actions such as adding, removing, finding, and displaying books.
+    It runs in a loop until the user chooses to exit.
 
+    :return: None
     """
 
     library = Library('library.json')  # Initializing the library with the specified JSON file
